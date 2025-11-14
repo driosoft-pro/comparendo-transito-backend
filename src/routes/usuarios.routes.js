@@ -17,7 +17,7 @@ router.use(authMiddleware);
 // Info del usuario autenticado
 router.get('/me', getMe);
 
-// Sólo admin puede gestionar usuarios (puedes relajar esto si quieres)
+// El admin puede gestionar usuarios
 router.get('/', isAdmin, getUsuarios);
 router.get('/:id', isAdmin, getUsuarioById);
 router.post('/', isAdmin, createUsuario);
