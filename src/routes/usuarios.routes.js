@@ -1,27 +1,49 @@
 import { Router } from 'express';
 import {
+  getMe,
   getUsuarios,
   getUsuarioById,
   createUsuario,
   updateUsuario,
   deleteUsuario,
-  getMe,
 } from '../controllers/usuarios.controller.js';
-import { authMiddleware, isAdmin } from '../middleware/auth.middleware.js';
+import {
+  authMiddleware,
+  requirePermission,
+  isAdmin,
+  PERMISOS,
+} from '../middlewares/auth.middleware.js';
 
 const router = Router();
 
-// Todas las rutas de usuarios requieren JWT
+// Todas las rutas requieren autenticación
 router.use(authMiddleware);
 
 // Info del usuario autenticado
 router.get('/me', getMe);
 
-// El admin puede gestionar usuarios
+// Listar usuarios - Solo admin
 router.get('/', isAdmin, getUsuarios);
+
+// Ver un usuario - Solo admin
 router.get('/:id', isAdmin, getUsuarioById);
-router.post('/', isAdmin, createUsuario);
-router.put('/:id', isAdmin, updateUsuario);
-router.delete('/:id', isAdmin, deleteUsuario);
+
+// Crear usuario - Solo admin
+router.post('/', 
+  requirePermission(PERMISOS.USUARIO_CREATE),
+  createUsuario
+);
+
+// Actualizar usuario - Solo admin
+router.put('/:id',
+  requirePermission(PERMISOS.USUARIO_UPDATE),
+  updateUsuario
+);
+
+// Eliminar (desactivar) usuario - Solo admin
+router.delete('/:id',
+  requirePermission(PERMISOS.USUARIO_DELETE),
+  deleteUsuario
+);
 
 export default router;

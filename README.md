@@ -1,4 +1,5 @@
-# 🚦 Sistema de Comparendos – Backend API  
+# Sistema de Comparendos – Backend API
+
 Backend oficial del proyecto académico basado en **Comparendos de Tránsito**, desarrollado con:
 
 - **Node.js + Express (JavaScript)**
@@ -13,24 +14,26 @@ Backend oficial del proyecto académico basado en **Comparendos de Tránsito**, 
 
 ![MER_COMPARENDO_TRNASITO.png](docs/img/MER_COMPARENDO_TRANSITO.png)
 
+---
+
 ![MER_FULL.png](docs/img/MER_FULL.png)
 
 ---
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 /api-comparendos-backend
 │
 ├── docs                           # Documentación y diagramas
 │   └── db
-│       ├── EntidadesComparendoTransito.pdf  
+│       ├── EntidadesComparendoTransito.pdf
 │       └── RequerimientosComparendoTrancito.pdf
 ├── scripts                        # Scripts útiles
 │   └── db
-│       ├── quejas.sql  
+│       ├── quejas.sql
 │       ├── auditoria.sql
-│       └── supabase.sql    
+│       └── supabase.sql
 ├── src
 │   ├── config
 │   │   ├── supabase.js            # Conexión a Supabase
@@ -71,12 +74,12 @@ Backend oficial del proyecto académico basado en **Comparendos de Tránsito**, 
 │   │   └── errorHandler.js        # Manejo global de errores
 │   │
 │   └── app.js                     # Configuración express
-│    
+│
 ├── test                           # Pruebas unitarias e integración
 │   └── db
-│       ├── quejas.sql  
+│       ├── quejas.sql
 │       ├── auditoria.sql
-│       └── supabase.sql                 
+│       └── supabase.sql
 │
 ├── .env.example                   # Variables necesarias
 ├── .gitignore                     # Ignorar archivos sensibles
@@ -86,9 +89,9 @@ Backend oficial del proyecto académico basado en **Comparendos de Tránsito**, 
 
 ---
 
-## 🔐 Autenticación JWT
+## Autenticación JWT
 
-La API utiliza **JWT (JSON Web Token)** para autenticar usuarios.  
+La API utiliza **JWT (JSON Web Token)** para autenticar usuarios.
 
 El flujo es:
 
@@ -101,40 +104,66 @@ El flujo es:
 Authorization: Bearer <tu_token>
 ```
 
+## LIBRERIAS USADAS
+
+- Express
+- CORS
+- Morgan
+- Dotenv
+- Helmet
+- Jsonwebtoken
+- Supabase
+- Mongoose
+- Bcryptjs
+- Winston
+- Nodemon
+- Jest
+- Supertest
+
 ---
 
 ## Motores de Base de Datos
 
 ### Supabase (SQL principal)
+
 Usado para:
-- Personas  
-- Automotores  
-- Comparendos  
-- Infracciones  
-- Propietarios  
+
+- Personas
+- Automotores
+- Comparendos
+- Infracciones
+- Propietarios
 
 ### MongoDB (motor alterno)
+
 Usado para:
-- Quejas ciudadanas  
-- Auditoría de acciones  
-- Datos no estructurados o históricos  
+
+- Quejas ciudadanas
+- Auditoría de acciones
+- Datos no estructurados o históricos
 
 ---
 
 ## Instalación
 
 ### 1. Clonar repositorio
+
 ```
-git clone git@github.com:driosoft-pro/comparendo-transito.git
+git clone https://github.com/driosoft-pro/comparendo-transito.git
+```
+
+```
 cd comparendo-transito
 ```
 
 ### 2. Instalar dependencias
+
 ```
 npm install
 ```
 
 ### 3. Crear archivo `.env`
+
 Basado en `.env.example`:
 
 ```
@@ -151,11 +180,13 @@ MONGODB_URI=mongodb+srv://...
 ### 4. Ejecutar servidor
 
 Modo desarrollo:
+
 ```
 npm run dev
 ```
 
 Modo producción:
+
 ```
 npm start
 ```
@@ -163,56 +194,84 @@ npm start
 ---
 
 ## Datos
-### Listado de Usuarios
-#### Administrador
-| Usuario     | Contraseña        | Rol               |ID  |
-|-------------|-------------------|-------------------|----|
-| admin.cali  | Admin123!         | administrador     |1   |
-
-#### Policías de Tránsito
-| Usuario          | Contraseña   | Rol               |ID  |
-|------------------|--------------|-------------------|----|
-| policia.rodriguez| Policia123!  | policia_transito  |2   |
-| policia.martinez | Policia123!  | policia_transito  |3   |
-| policia.gomez    | Policia123!  | policia_transito  |4   |
-| policia.castro   | Policia123!  | policia_transito  |11  |
-| policia.torres.p | Policia123!  | policia_transito  |12  |
-| policia.munoz    | Policia123!  | policia_transito  |13  |
-| policia.herrera  | Policia123!  | policia_transito  |14  |
-| policia.morales  | Policia123!  | policia_transito  |16  |
-
-#### Ciudadanos
-| Usuario          | Contraseña    | Rol              |ID  |
-|------------------|-------------- |------------------|----|
-| ciudadano.perez  | Ciudadano123! | ciudadano        |5   |
-| ciudadano.lopez  | Ciudadano123! | ciudadano        |6   |
-| ciudadano.sanchez| Ciudadano123! | ciudadano        |10  |
-
-#### Personal Administrativo
-| Usuario            | Contraseña      | Rol          |ID  |
-|--------------------|-----------------|--------------|----|
-| supervisor.ramirez | Supervisor123!  | supervisor   |7   |
-| operador.castro    | Operador123!    | operador     |8   |
-| auditor.torres     | Auditor123!     | auditor      |9   |
-
-#### Resumen de contraseñas por rol
-| Rol                 | Contraseña      |  Cantidad de usuarios  |
-|---------------------|-----------------|------------------------|
-| Administrador       | Admin123!       |             1          |
-| Policía de Tránsito | Policia123!     |             9          |
-| Ciudadano           | Ciudadano123!   |             3          |
-| Supervisor          | Supervisor123!  |             1          |
-| Operador            | Operador123!    |             1          |
-| Auditor             | Auditor123!     |             1          |
-
-
 
 ---
 
-## 📚 Endpoints principales
+### PERMISOS POR ROL
+
+| Rol           | Comparendos                   | Usuario   | Quejas              | Reportes            | Auditorías |
+| ------------- | ----------------------------- | --------- | ------------------- | ------------------- | ---------- |
+| Administrador | Todo                          | Todo      | Todo                | Todo                | Todo       |
+| Policía       | Crear, Ver propios            | -         | Ver propias         | Ver                 | -          |
+| Supervisor    | Ver todos, Actualizar, Anular | Ver todos | Ver todas, Resolver | Generar, Ver        | Ver        |
+| Operador      | Ver todos, Actualizar         | -         | ver todas, Resolver | Ver                 | -          |
+| Auditor       | Ver todos                     | Ver todos | Ver todas, Resolver | Generar, Financiero | Ver todas  |
+| Ciudadano     | Ver propios                   | -         | Crear, Ver propias  | -                   | -          |
+
+---
+
+### LISTADO DE USUARIOS
+
+#### Administrador
+
+| Usuario    | Contraseña | Rol           | ID  |
+| ---------- | ---------- | ------------- | --- |
+| admin.cali | Admin123!  | administrador | 1   |
+
+#### Policías de Tránsito
+
+| Usuario           | Contraseña  | Rol              | ID  |
+| ----------------- | ----------- | ---------------- | --- |
+| policia.rodriguez | Policia123! | policia_transito | 2   |
+| policia.martinez  | Policia123! | policia_transito | 3   |
+| policia.gomez     | Policia123! | policia_transito | 4   |
+| policia.castro    | Policia123! | policia_transito | 11  |
+| policia.torres.p  | Policia123! | policia_transito | 12  |
+| policia.munoz     | Policia123! | policia_transito | 13  |
+| policia.herrera   | Policia123! | policia_transito | 14  |
+| policia.morales   | Policia123! | policia_transito | 16  |
+
+#### Ciudadanos
+
+| Usuario           | Contraseña    | Rol       | ID  |
+| ----------------- | ------------- | --------- | --- |
+| ciudadano.perez   | Ciudadano123! | ciudadano | 5   |
+| ciudadano.lopez   | Ciudadano123! | ciudadano | 6   |
+| ciudadano.sanchez | Ciudadano123! | ciudadano | 10  |
+
+#### Personal Administrativo
+
+| Usuario            | Contraseña     | Rol        | ID  |
+| ------------------ | -------------- | ---------- | --- |
+| supervisor.ramirez | Supervisor123! | supervisor | 7   |
+| operador.castro    | Operador123!   | operador   | 8   |
+| auditor.torres     | Auditor123!    | auditor    | 9   |
+
+#### Resumen de contraseñas por rol
+
+| Rol                 | Contraseña     | Cantidad de usuarios |
+| ------------------- | -------------- | -------------------- |
+| Administrador       | Admin123!      | 1                    |
+| Policía de Tránsito | Policia123!    | 9                    |
+| Ciudadano           | Ciudadano123!  | 3                    |
+| Supervisor          | Supervisor123! | 1                    |
+| Operador            | Operador123!   | 1                    |
+| Auditor             | Auditor123!    | 1                    |
+
+---
+
+## LOGIN JWT - Supabase
+
+| Método | Endpoint           | Descripción                         |
+| ------ | ------------------ | ----------------------------------- |
+| POST   | `/api/auth/login`  | Login de usuario                    |
+| GET    | `/api/auth/login`  | Información del usuario autenticado |
+| POST   | `/api/auth/logout` | Logout de usuario                   |
+
+## ENDPOINTS PRINCIPALES
 
 | Método | Endpoint           | Descripción         |
-|--------|--------------------|---------------------|
+| ------ | ------------------ | ------------------- |
 | POST   | `/api/auth/login`  | Login de usuario    |
 | POST   | `/api/usuarios`    | Crear usuario       |
 | GET    | `/api/comparendos` | Listar comparendos  |
@@ -220,117 +279,130 @@ npm start
 | GET    | `/api/personas`    | Listar personas     |
 | GET    | `/api/automotores` | Listar automotores  |
 | POST   | `/api/quejas`      | Crear queja (Mongo) |
-| POST   | `/api/auth/login` | Login de usuario   |
-
-## LOGIN JWT - Supabase
-| Método | Endpoint          | Descripción                           |
-|--------|-------------------|---------------------------------------|
-| POST   | `/api/auth/login` | Login de usuario                      |
-| GET    | `/api/auth/login` | Información del usuario autenticado   |
-
-## CRUD USUARIOS
-| Método | Endpoint            | Descripción               |
-|--------|---------------------|---------------------------|
-| GET    | `/api/usuarios`     | Listar usuarios           |
-| GET    | `/api/usuarios/:id` | Obtener usuario por ID    |
-| PUT    | `/api/usuarios/:id` | Actualizar usuario por ID |
-| DELETE | `/api/usuarios/:id` | Eliminar usuario por ID   |  
+| POST   | `/api/auth/login`  | Login de usuario    |
 
 ---
 
-## 📦 Scripts NPM
+## CRUD USUARIOS
 
+| Método | Endpoint            | Descripción               |
+| ------ | ------------------- | ------------------------- |
+| GET    | `/api/usuarios`     | Listar usuarios           |
+| GET    | `/api/usuarios/:id` | Obtener usuario por ID    |
+| PUT    | `/api/usuarios/:id` | Actualizar usuario por ID |
+| DELETE | `/api/usuarios/:id` | Eliminar usuario por ID   |
 
-```bash
-npm init -y
-```
+---
 
-```bash
-npm install express cors morgan dotenv helmet jsonwebtoken @supabase/supabase-js mongoose bcryptjs
-winston && npm install -D nodemon jest
-```
+## CRUD PERSONAS
 
-# comandos disponibles:
+| Método | Endpoint            | Descripción               |
+| ------ | ------------------- | ------------------------- |
+| GET    | `/api/personas`     | Listar personas           |
+| GET    | `/api/personas/:id` | Obtener persona por ID    |
+| PUT    | `/api/personas/:id` | Actualizar persona por ID |
+| DELETE | `/api/personas/:id` | Eliminar persona por ID   |
+
+---
+
+## CRUD AUTOMOTORES
+
+| Método | Endpoint               | Descripción                 |
+| ------ | ---------------------- | --------------------------- |
+| GET    | `/api/automotores`     | Listar automotores          |
+| GET    | `/api/automotores/:id` | Obtener automotor por ID    |
+| PUT    | `/api/automotores/:id` | Actualizar automotor por ID |
+| DELETE | `/api/automotores/:id` | Eliminar automotor por ID   |
+
+## CRUD COMPARENDOS
+
+| Método | Endpoint               | Descripción                  |
+| ------ | ---------------------- | ---------------------------- |
+| GET    | `/api/comparendos`     | Listar comparendos           |
+| GET    | `/api/comparendos/:id` | Obtener comparendo por ID    |
+| PUT    | `/api/comparendos/:id` | Actualizar comparendo por ID |
+| DELETE | `/api/comparendos/:id` | Eliminar comparendo por ID   |
+
+## CRUD QUEJAS
+
+| Método | Endpoint          | Descripción             |
+| ------ | ----------------- | ----------------------- |
+| GET    | `/api/quejas`     | Listar quejas           |
+| GET    | `/api/quejas/:id` | Obtener queja por ID    |
+| PUT    | `/api/quejas/:id` | Actualizar queja por ID |
+| DELETE | `/api/quejas/:id` | Eliminar queja por ID   |
+
+---
+
+## COMANDOS DISPONIBLES
+
 #### Desarrollo (con nodemon - recarga automática)
-```bash
+
+```
 npm run dev
 ```
 
 #### Producción (sin nodemon)
-```bash
+
+```
 npm start
 ```
 
 #### Tests (ejecutar una vez)
-```bash
+
+```
 npm test
 ```
 
 #### Tests en modo watch (ejecuta automáticamente al guardar)
-```bash
+
+```
 npm run test:watch
 ```
 
 #### Tests con cobertura de código
-```bash
+
+```
 npm run test:coverage
 ```
 
 # Comandos adicionales útiles:
 
 #### Motor alterno: MongoDB
+
 ##### Ver todas las dependencias instaladas
-```bash
+
+```
 npm list --depth=0
 ```
 
 #### Actualizar dependencias
-```bash
+
+```
 npm update
 ```
 
 #### Verificar dependencias vulnerables
-```bash
+
+```
 npm audit
 ```
 
 #### Limpiar caché de npm
-```bash
+
+```
 npm cache clean --force
 ```
 
 #### Reinstalar todo desde cero
-```bash
+
+```
 rm -rf node_modules package-lock.json
 npm install
 ```
 
-### 1. Clonar o iniciar proyecto
-```bash
-cd tu-proyecto
-```
-
-### 2. Instalar dependencias
-```bash
-npm install
-```
-
-### 3. Copiar variables de entorno
-```bash
-cp .env.example .env
-```
-
-### 4. Editar .env con tus credenciales
-```bash
-nano .env
-```
-
-#### 5. Ejecutar en desarrollo
-```bash
-npm run dev
-```
-
 Justificación:
+
 - Excelente para almacenar documentos de quejas (texto largo, adjuntos, historial)
 - Permite auditorías JSON flexibles
 - Complementa al SQL estructurado de Supabase
@@ -346,14 +418,15 @@ Justificación:
 
 ---
 
-## 📄 Licencia
+## Licencia
+
 MIT – Libre para uso académico.
 
 ---
 
-## 👨‍💻 Autor
+## Autor
+
 - **Deyton Riasco Ortiz** — driosoftpro@gmail.com
 - **Samuel Izquierdo Bonilla** — samuelizquierdo98@gmail.com
 
   **Año:** 2025
-- **Proyecto académico para formación en desarrollo backend.**

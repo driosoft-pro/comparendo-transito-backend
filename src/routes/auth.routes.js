@@ -1,9 +1,24 @@
 import { Router } from 'express';
-import { login } from '../controllers/auth.controller.js';
+import {
+  login,
+  register,
+  changePassword,
+  getMe,
+} from '../controllers/auth.controller.js';
+import {
+  authMiddleware,
+  requirePermission,
+  PERMISOS,
+} from '../middlewares/auth.middleware.js';
 
 const router = Router();
 
-// POST /api/auth/login
+// Rutas públicas
 router.post('/login', login);
+router.post('/register', register);
+
+// Rutas protegidas
+router.get('/me', authMiddleware, getMe);
+router.post('/change-password', authMiddleware, changePassword);
 
 export default router;

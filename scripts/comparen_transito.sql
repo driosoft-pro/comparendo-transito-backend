@@ -299,7 +299,7 @@ COMMENT ON TABLE categoria_licencia IS 'Categorías de licencias de conducción'
 COMMENT ON TABLE infraccion IS 'Catálogo de infracciones de tránsito';
 COMMENT ON TABLE secretaria_transito IS 'Secretarías de tránsito por región';
 COMMENT ON TABLE municipio IS 'Municipios con su secretaría de tránsito';
-COMMENT ON TABLE usuarios IS 'Usuarios del sistema (policías, ciudadanos, admin)';
+COMMENT ON TABLE usuarios IS 'Usuarios del sistema (policías, ciudadanos, administrador, supervisor, operador, auditor)';
 COMMENT ON TABLE policia_transito IS 'Agentes de policía de tránsito';
 COMMENT ON TABLE licencia_conduccion IS 'Licencias de conducción expedidas';
 COMMENT ON TABLE personas IS 'Información de personas (conductores y propietarios)';

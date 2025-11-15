@@ -1,6 +1,38 @@
 import { UsuarioModel } from '../models/usuario.model.js';
 import { hashPassword } from '../utils/password.js';
 
+
+/**
+ * GET /api/usuarios/me
+ * Devuelve info del usuario autenticado (según token)
+ */
+export const getMe = async (req, res) => {
+  try {
+    const { id_usuario } = req.user;
+
+    const user = await UsuarioModel.findById(id_usuario);
+    if (!user) {
+      return res.status(404).json({
+        ok: false,
+        message: 'Usuario no encontrado',
+      });
+    }
+
+    const { password_hash, ...safeUser } = user;
+
+    return res.json({
+      ok: true,
+      usuario: safeUser,
+    });
+  } catch (error) {
+    console.error('Error en /me:', error.message);
+    return res.status(500).json({
+      ok: false,
+      message: 'Error obteniendo información de usuario',
+    });
+  }
+};
+
 /**
  * GET /api/usuarios
  * Lista usuarios (opcional: solo admin)
@@ -163,37 +195,6 @@ export const deleteUsuario = async (req, res) => {
     return res.status(500).json({
       ok: false,
       message: 'Error eliminando usuario',
-    });
-  }
-};
-
-/**
- * GET /api/usuarios/me
- * Devuelve info del usuario autenticado (según token)
- */
-export const getMe = async (req, res) => {
-  try {
-    const { id_usuario } = req.user;
-
-    const user = await UsuarioModel.findById(id_usuario);
-    if (!user) {
-      return res.status(404).json({
-        ok: false,
-        message: 'Usuario no encontrado',
-      });
-    }
-
-    const { password_hash, ...safeUser } = user;
-
-    return res.json({
-      ok: true,
-      usuario: safeUser,
-    });
-  } catch (error) {
-    console.error('Error en /me:', error.message);
-    return res.status(500).json({
-      ok: false,
-      message: 'Error obteniendo información de usuario',
     });
   }
 };
