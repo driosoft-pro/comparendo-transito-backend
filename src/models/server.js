@@ -1,6 +1,7 @@
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import routes from "../routes/index.js";
 
 import { notFoundHandler, errorHandler } from "../utils/errorHandler.js";
 import { connectionNoSQL, closeMongo } from "../config/mongo.js";   
@@ -50,7 +51,7 @@ class Server {
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-    this.app.use(express.static("public")); // Directorio público si lo necesitas
+    this.app.use("/public", express.static("public"));
   }
 
   // Conectar todas las bases de datos
@@ -80,14 +81,9 @@ class Server {
   }
 
   // Cargar rutas
-  async routes() {
-    try {
-      const routes = (await import("./src/routes/index.js")).default; // ajusta según tu estructura
-      this.app.use("/api", routes);
-      console.log("✓ Rutas cargadas correctamente.");
-    } catch (error) {
-      console.error("Error al cargar rutas:", error.message);
-    }
+  routes() {
+    this.app.use("/api", routes);
+    console.log("✓ Rutas cargadas correctamente.");
   }
 
   // Configurar cierre graceful del servidor
