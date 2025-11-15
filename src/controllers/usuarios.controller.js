@@ -65,7 +65,7 @@ export const getUsuarioById = async (req, res) => {
  */
 export const createUsuario = async (req, res) => {
   try {
-    const { username, password, rol, id_policia = null, id_persona = null } = req.body;
+    const { username, password, rol} = req.body;
 
     if (!username || !password || !rol) {
       return res.status(400).json({
@@ -74,18 +74,16 @@ export const createUsuario = async (req, res) => {
       });
     }
 
-    const password_hash = hashPassword(password);
+    const contrasena = hashPassword(password);
 
     const nuevoUsuario = await UsuarioModel.create({
       username,
-      password_hash,
+      contrasena,
       rol,
-      id_policia,
-      id_persona,
-      activo: true,
+      estado: 1,
     });
 
-    const { password_hash: _, ...safeUser } = nuevoUsuario;
+    const { contrasena: _, ...safeUser } = nuevoUsuario;
 
     return res.status(201).json({
       ok: true,
@@ -108,17 +106,16 @@ export const createUsuario = async (req, res) => {
 export const updateUsuario = async (req, res) => {
   try {
     const { id } = req.params;
-    const { password, rol, id_policia, id_persona, activo } = req.body;
+    const { username, contrasena, rol, estado } = req.body;
 
     const campos = {};
 
+    if (username !== undefined) campos.username = username;
     if (rol !== undefined) campos.rol = rol;
-    if (id_policia !== undefined) campos.id_policia = id_policia;
-    if (id_persona !== undefined) campos.id_persona = id_persona;
-    if (activo !== undefined) campos.activo = activo;
+    if (estado !== undefined) campos.estado = 1;
 
-    if (password) {
-      campos.password_hash = hashPassword(password);
+    if (contrasena) {
+      campos.contrasena = hashPassword(password);
     }
 
     if (Object.keys(campos).length === 0) {
@@ -129,7 +126,7 @@ export const updateUsuario = async (req, res) => {
     }
 
     const actualizado = await UsuarioModel.update(id, campos);
-    const { password_hash, ...safeUser } = actualizado;
+    const { password, ...safeUser } = actualizado;
 
     return res.json({
       ok: true,
@@ -147,13 +144,13 @@ export const updateUsuario = async (req, res) => {
 
 /**
  * DELETE /api/usuarios/:id
- * Soft-delete: marca activo = false
+ * Soft-delete: marca estado = 0
  */
 export const deleteUsuario = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const actualizado = await UsuarioModel.update(id, { activo: false });
+    const actualizado = await UsuarioModel.update(id, { estado: 0 });
     const { password_hash, ...safeUser } = actualizado;
 
     return res.json({
