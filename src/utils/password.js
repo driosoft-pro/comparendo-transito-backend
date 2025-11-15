@@ -37,7 +37,7 @@ export const verifyPassword = (plainPassword, storedHash) => {
 
   try {
     const isValid = bcrypt.compareSync(plainPassword, storedHash);
-    console.log('Verificación:', isValid ? 'Correcta' : 'Incorrecta');
+    //console.log('Verificación:', isValid ? 'Correcta' : 'Incorrecta');
     return isValid;
   } catch (error) {
     console.error('Error al verificar password:', error.message);
