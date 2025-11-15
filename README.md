@@ -167,14 +167,32 @@ npm install
 Basado en `.env.example`:
 
 ```
+# API ENV EXAMPLE
 PORT=8080
-JWT_SECRET=tu_clave_segura
+NODE_ENV=development
 
-SUPABASE_URL=https://xxxxx.supabase.co
-SUPABASE_ANON_KEY=xxxx
-SUPABASE_SERVICE_ROLE_KEY=xxxx
+# Entorno de BD
+DB_ENV=remote   # o local
 
-MONGODB_URI=mongodb+srv://...
+# Supabase LOCAL
+SUPABASE_LOCAL_URL=http://localhost:54321
+SUPABASE_LOCAL_KEY=local-dev-key
+SUPABASE_LOCAL_SCHEMA=public
+
+# Supabase REMOTO
+SUPABASE_REMOTE_URL=https://xxxxx.supabase.co
+SUPABASE_REMOTE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2d2hqZ2FqbmdxenN3ZHpxenNuIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MzA2Mjc4MCwiZXhwIjoyMDc4NjM4NzgwfQ.Vpd4xWXFVRXqfNTuqWgV2wNGr8JPP7ooudO9vFk3mMo
+SUPABASE_REMOTE_SCHEMA=public
+
+# JWT
+JWT_SECRET=Ll4v3Sup3rS3cr3t4N0L4DR10S0FTPR02025@10
+JWT_EXPIRES_IN=2h
+
+# Local Mongo
+MONGODB_LOCAL_URI=mongodb://localhost:27017/mi_basedatos
+
+# Remoto Mongo
+MONGODB_REMOTE_URI=mongodb+srv://usuario:password@cluster.mongodb.net/mi_basedatos
 ```
 
 ### 4. Ejecutar servidor
@@ -409,7 +427,7 @@ Justificación:
 
 ---
 
-## 🛠️ TODO
+## TODO
 
 - Validación de categorías de licencia
 - Endpoints para múltiples infracciones por comparendo
