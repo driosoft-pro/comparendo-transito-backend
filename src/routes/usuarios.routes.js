@@ -11,7 +11,7 @@ import { authMiddleware, isAdmin } from '../middleware/auth.middleware.js';
 
 const router = Router();
 
-// Rutas protegidas por JWT
+// Todas las rutas de usuarios requieren JWT
 router.use(authMiddleware);
 
 // Info del usuario autenticado

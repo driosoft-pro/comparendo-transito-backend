@@ -9,13 +9,12 @@ export const getUsuarios = async (req, res) => {
   try {
     const { limit = 50, offset = 0 } = req.query;
 
-    const { data, error } = await UsuarioModel.findAll
-      ? await UsuarioModel.findAll({ limit: Number(limit), offset: Number(offset) })
-      : await importUsuariosFindAllFallback(limit, offset);
+    const usuarios = await UsuarioModel.findAll({
+      limit: Number(limit),
+      offset: Number(offset),
+    });
 
-    if (error) throw error;
-
-    const safe = data.map(({ password_hash, ...rest }) => rest);
+    const safe = usuarios.map(({ password_hash, ...rest }) => rest);
 
     return res.json({
       ok: true,
@@ -28,15 +27,6 @@ export const getUsuarios = async (req, res) => {
       message: 'Error obteniendo usuarios',
     });
   }
-};
-
-// Fallback si no definimos findAll en el modelo (por si acaso)
-const importUsuariosFindAllFallback = async (limit, offset) => {
-  const { supabase } = await import('../config/supabase.js');
-  return supabase
-    .from('usuario_sistema')
-    .select('*')
-    .range(Number(offset), Number(offset) + Number(limit) - 1);
 };
 
 /**
@@ -163,7 +153,6 @@ export const deleteUsuario = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // soft delete
     const actualizado = await UsuarioModel.update(id, { activo: false });
     const { password_hash, ...safeUser } = actualizado;
 

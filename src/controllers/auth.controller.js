@@ -17,7 +17,10 @@ const verifyPassword = (plainPassword, storedHash) => {
   const [, saltHex, digestHex] = parts;
 
   const salt = Buffer.from(saltHex, 'hex');
-  const hash = crypto.createHash('sha256').update(Buffer.concat([salt, Buffer.from(plainPassword)])).digest('hex');
+  const hash = crypto
+    .createHash('sha256')
+    .update(Buffer.concat([salt, Buffer.from(plainPassword)]))
+    .digest('hex');
 
   return crypto.timingSafeEqual(Buffer.from(hash, 'hex'), Buffer.from(digestHex, 'hex'));
 };
