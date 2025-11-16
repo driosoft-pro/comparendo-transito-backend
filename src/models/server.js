@@ -4,10 +4,8 @@ import express from "express";
 import routes from "../routes/index.js";
 
 import { notFoundHandler, errorHandler } from "../utils/errorHandler.js";
-import { connectionNoSQL, closeMongo } from "../config/mongo.js";   
-import { verifySupabase } from "../config/supabase.js";            
-
-const app = express();
+import { connectionNoSQL, closeMongo } from "../config/mongo.js";
+import { verifySupabase } from "../config/supabase.js";
 
 // Cargar variables de entorno sin logs
 dotenv.config({ quiet: true });
@@ -40,7 +38,7 @@ class Server {
 
     // Manejo de errores
     this.app.use(notFoundHandler);
-    
+
     // Middleware central de manejo de errores
     this.app.use(errorHandler);
 
@@ -76,7 +74,9 @@ class Server {
     try {
       await connectionNoSQL();
       console.log("✓ Conexión OK a MongoDB.");
-      console.log(` * BD Mongo (REMOTE_BD): ${process.env.MONGODB_REMOTE_BD || "no definida"}`);
+      console.log(
+        ` * BD Mongo (REMOTE_BD): ${process.env.MONGODB_REMOTE_BD || "no definida"}`,
+      );
     } catch (error) {
       console.error("No se pudo conectar a MongoDB:", error.message);
     }
