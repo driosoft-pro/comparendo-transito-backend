@@ -1,7 +1,7 @@
 -- Script de creación de base de datos para PostgreSQL
 -- Sistema de Comparendos de Tránsito
 -- Fecha: 2025-11-14
--- CORREGIDO: Orden de creación de tablas y dependencias
+-- Creación de tablas y dependencias
 
 -- Eliminar tablas si existen (en orden inverso por dependencias)
 DROP TABLE IF EXISTS queja CASCADE;
@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS categoria_licencia CASCADE;
 DROP TABLE IF EXISTS cargo_policial CASCADE;
 
 -- =========================================================================
--- TABLAS SIN DEPENDENCIAS (Orden 1)
+-- TABLAS SIN DEPENDENCIAS
 -- =========================================================================
 
 -- Tabla: cargo_policial
@@ -70,7 +70,7 @@ CREATE TABLE secretaria_transito (
 );
 
 -- =========================================================================
--- TABLAS CON DEPENDENCIAS DE NIVEL 1 (Orden 2)
+-- TABLAS CON DEPENDENCIAS DE NIVEL 1
 -- =========================================================================
 
 -- Tabla: municipio (depende de secretaria_transito)
@@ -139,7 +139,7 @@ CREATE TABLE policia_transito (
 );
 
 -- =========================================================================
--- TABLAS CON DEPENDENCIAS DE NIVEL 2 (Orden 3)
+-- TABLAS CON DEPENDENCIAS DE NIVEL 2
 -- =========================================================================
 
 -- Tabla: personas (depende de municipio, licencia_conduccion, usuarios)
@@ -147,8 +147,10 @@ CREATE TABLE personas (
     id_persona SERIAL PRIMARY KEY,
     tipo_doc VARCHAR(5) NOT NULL,
     num_doc VARCHAR(20) NOT NULL,
-    nombre VARCHAR(50) NOT NULL,
-    apellidos VARCHAR(50) NOT NULL,
+    primer_nombre VARCHAR(50) NOT NULL,
+    segundo_nombre VARCHAR(50) NULL,
+    primer_apellido VARCHAR(50) NOT NULL,
+    segundo_apellido VARCHAR(50) NULL,
     fecha_nacimiento DATE NOT NULL,
     genero VARCHAR(10) NOT NULL,
     direccion VARCHAR(150) NOT NULL,
@@ -168,7 +170,7 @@ CREATE TABLE personas (
 
 -- Actualizar licencia_conduccion con referencia a personas (relación bidireccional)
 ALTER TABLE licencia_conduccion ADD COLUMN id_persona INTEGER;
-ALTER TABLE licencia_conduccion ADD CONSTRAINT fk_licencia_persona 
+ALTER TABLE licencia_conduccion ADD CONSTRAINT fk_licencia_persona
     FOREIGN KEY (id_persona) REFERENCES personas(id_persona);
 CREATE UNIQUE INDEX idx_licencia_persona ON licencia_conduccion(id_persona);
 
@@ -213,7 +215,7 @@ CREATE TABLE propiedad_automotor (
 );
 
 -- =========================================================================
--- TABLAS CON DEPENDENCIAS DE NIVEL 3 (Orden 4)
+-- TABLAS CON DEPENDENCIAS DE NIVEL 3
 -- =========================================================================
 
 -- Tabla: comparendo (depende de múltiples tablas)
@@ -243,7 +245,7 @@ CREATE TABLE comparendo (
 );
 
 -- =========================================================================
--- TABLAS CON DEPENDENCIAS DE NIVEL 4 (Orden 5)
+-- TABLAS CON DEPENDENCIAS DE NIVEL 4
 -- =========================================================================
 
 -- Tabla: comparendo_infraccion (depende de comparendo e infraccion)
@@ -277,6 +279,27 @@ CREATE TABLE queja (
 );
 
 -- =========================================================================
+-- CAMPO DE AUDITORÍA
+-- =========================================================================
+
+ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE personas ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE automotor ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE policia_transito ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE licencia_conduccion ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE comparendo ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE queja ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE cargo_policial ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE categoria_licencia ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE infraccion ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE secretaria_transito ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE municipio ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE licencia_categoria ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE propietario_automotor ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE propiedad_automotor ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+ALTER TABLE comparendo_infraccion ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL;
+
+-- =========================================================================
 -- ÍNDICES PARA MEJORAR RENDIMIENTO
 -- =========================================================================
 
@@ -299,7 +322,7 @@ COMMENT ON TABLE categoria_licencia IS 'Categorías de licencias de conducción'
 COMMENT ON TABLE infraccion IS 'Catálogo de infracciones de tránsito';
 COMMENT ON TABLE secretaria_transito IS 'Secretarías de tránsito por región';
 COMMENT ON TABLE municipio IS 'Municipios con su secretaría de tránsito';
-COMMENT ON TABLE usuarios IS 'Usuarios del sistema (policías, ciudadanos, admin)';
+COMMENT ON TABLE usuarios IS 'Usuarios del sistema (policías, ciudadanos, administrador, supervisor, operador, auditor)';
 COMMENT ON TABLE policia_transito IS 'Agentes de policía de tránsito';
 COMMENT ON TABLE licencia_conduccion IS 'Licencias de conducción expedidas';
 COMMENT ON TABLE personas IS 'Información de personas (conductores y propietarios)';
@@ -317,7 +340,7 @@ COMMENT ON TABLE queja IS 'Quejas ciudadanas sobre comparendos';
 
 SELECT '
 ========================================
-✓ BASE DE DATOS CREADA EXITOSAMENTE
+BASE DE DATOS CREADA EXITOSAMENTE
 ========================================
 Sistema: Comparendos de Tránsito
 DBMS: PostgreSQL
@@ -325,17 +348,10 @@ Fecha: 2025-11-14
 
 Total de tablas creadas: 16
 - Tablas de catálogo: 3
-- Tablas de configuración: 2  
+- Tablas de configuración: 2
 - Tablas de entidades: 5
 - Tablas de relaciones: 4
 - Tablas transaccionales: 2
-
-Correcciones aplicadas:
-✓ Orden de creación corregido
-✓ Tabla queja agregada
-✓ Dependencias circulares resueltas
-✓ Índices optimizados
-✓ Comentarios agregados
 
 Estado: LISTO PARA INSERTS
 ========================================
