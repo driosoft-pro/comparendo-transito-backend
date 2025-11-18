@@ -1,7 +1,6 @@
 -- =========================================================================
 -- Script de Inserción de Datos de Prueba
 -- Sistema de Comparendos de Tránsito - Santiago de Cali
--- Versión: 2.1 - Compatible con nueva estructura
 -- =========================================================================
 
 -- =========================================================================
@@ -152,16 +151,16 @@ INSERT INTO personas (tipo_doc, num_doc, primer_nombre, segundo_nombre, primer_a
 
 -- Segundo: Policías (datos personales vinculados)
 INSERT INTO personas (tipo_doc, num_doc, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, genero, direccion, telefono, email, id_municipio, id_licencia_conduccion, id_usuario) VALUES
-('CC', 'PT001', 'Carlos', 'Alberto', 'Rodríguez', 'Méndez', '1985-03-15', 'Masculino', 'Calle 10 #50-20, Cali', '3101234567', 'carlos.rodriguez@transito.gov.co', 1, 11, 2),
-('CC', 'PT002', 'María', 'Fernanda', 'Martínez', 'López', '1990-07-22', 'Femenino', 'Carrera 15 #30-45, Cali', '3102345678', 'maria.martinez@transito.gov.co', 1, 12, 3),
-('CC', 'PT003', 'Juan', 'Pablo', 'Gómez', 'Vargas', '1988-11-05', 'Masculino', 'Calle 25 #40-15, Cali', '3103456789', 'juan.gomez@transito.gov.co', 1, 13, 4),
-('CC', 'PT004', 'Ana', 'Lucía', 'Ramírez', 'Soto', '1992-05-18', 'Femenino', 'Carrera 20 #35-50, Cali', '3104567890', 'ana.ramirez@transito.gov.co', 1, 14, 15),
-('CC', 'PT005', 'Diego', 'Fernando', 'Castro', 'Jiménez', '1987-09-30', 'Masculino', 'Calle 30 #25-30, Cali', '3105678901', 'diego.castro@transito.gov.co', 1, 15, 5),
-('CC', 'PT006', 'Sandra', 'Milena', 'Torres', 'Pérez', '1991-02-14', 'Femenino', 'Carrera 35 #20-40, Cali', '3106789012', 'sandra.torres@transito.gov.co', 1, 16, 6),
-('CC', 'PT007', 'Andrés', 'Felipe', 'Muñoz', 'Díaz', '1989-12-08', 'Masculino', 'Calle 40 #15-25, Cali', '3107890123', 'andres.munoz@transito.gov.co', 1, 17, 7),
-('CC', 'PT008', 'Carolina', NULL, 'Valencia', 'Ríos', '1993-06-25', 'Femenino', 'Carrera 45 #10-35, Cali', '3108901234', 'carolina.valencia@transito.gov.co', 1, 18, 8),
-('CC', 'PT009', 'Luis', 'Eduardo', 'Herrera', 'Cardona', '1986-04-12', 'Masculino', 'Calle 50 #5-20, Cali', '3109012345', 'luis.herrera@transito.gov.co', 1, 19, 9),
-('CC', 'PT010', 'Patricia', NULL, 'Morales', 'Aguilar', '1994-08-19', 'Femenino', 'Carrera 55 #12-45, Cali', '3100123456', 'patricia.morales@transito.gov.co', 1, 20, 10);
+('CC', '114456781', 'Carlos', 'Alberto', 'Rodríguez', 'Méndez', '1985-03-15', 'Masculino', 'Calle 10 #50-20, Cali', '3101234567', 'carlos.rodriguez@transito.gov.co', 1, 11, 2),
+('CC', '114456782', 'María', 'Fernanda', 'Martínez', 'López', '1990-07-22', 'Femenino', 'Carrera 15 #30-45, Cali', '3102345678', 'maria.martinez@transito.gov.co', 1, 12, 3),
+('CC', '114456783', 'Juan', 'Pablo', 'Gómez', 'Vargas', '1988-11-05', 'Masculino', 'Calle 25 #40-15, Cali', '3103456789', 'juan.gomez@transito.gov.co', 1, 13, 4),
+('CC', '114456784', 'Ana', 'Lucía', 'Ramírez', 'Soto', '1992-05-18', 'Femenino', 'Carrera 20 #35-50, Cali', '3104567890', 'ana.ramirez@transito.gov.co', 1, 14, 15),
+('CC', '114456785', 'Diego', 'Fernando', 'Castro', 'Jiménez', '1987-09-30', 'Masculino', 'Calle 30 #25-30, Cali', '3105678901', 'diego.castro@transito.gov.co', 1, 15, 5),
+('CC', '114456787', 'Sandra', 'Milena', 'Torres', 'Pérez', '1991-02-14', 'Femenino', 'Carrera 35 #20-40, Cali', '3106789012', 'sandra.torres@transito.gov.co', 1, 16, 6),
+('CC', '114456788', 'Andrés', 'Felipe', 'Muñoz', 'Díaz', '1989-12-08', 'Masculino', 'Calle 40 #15-25, Cali', '3107890123', 'andres.munoz@transito.gov.co', 1, 17, 7),
+('CC', '114456789', 'Carolina', NULL, 'Valencia', 'Ríos', '1993-06-25', 'Femenino', 'Carrera 45 #10-35, Cali', '3108901234', 'carolina.valencia@transito.gov.co', 1, 18, 8),
+('CC', '114456790', 'Luis', 'Eduardo', 'Herrera', 'Cardona', '1986-04-12', 'Masculino', 'Calle 50 #5-20, Cali', '3109012345', 'luis.herrera@transito.gov.co', 1, 19, 9),
+('CC', '114456791', 'Patricia', NULL, 'Morales', 'Aguilar', '1994-08-19', 'Femenino', 'Carrera 55 #12-45, Cali', '3100123456', 'patricia.morales@transito.gov.co', 1, 20, 10);
 
 -- =========================================================================
 -- 9. Actualizar relación inversa de licencias con personas
@@ -368,13 +367,6 @@ SELECT '
 ========================================
 Base de datos: PostgreSQL
 Municipio principal: Santiago de Cali
-Versión: 2.1 - Estructura actualizada
-
-CAMBIOS APLICADOS:
-✓ Tabla propietario_automotor ELIMINADA
-✓ Policías vinculados con personas
-✓ Secretarías vinculadas a municipios
-✓ 10 registros por tabla
 
 Resumen de registros:
 - 10 Cargos policiales
@@ -392,11 +384,6 @@ Resumen de registros:
 - 10 Comparendos de tránsito
 - 11 Infracciones en comparendos
 - 10 Quejas ciudadanas
-
-ESTRUCTURA CORRECTA:
-✓ Municipio (1) <---- (1) Secretaría
-✓ Personas (1) <---- (1) Policía
-✓ Sin duplicación de datos personales
 
 Estado: DATOS LISTOS PARA PRUEBAS
 ========================================

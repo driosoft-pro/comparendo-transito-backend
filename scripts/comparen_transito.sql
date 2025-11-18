@@ -398,20 +398,6 @@ BASE DE DATOS CREADA EXITOSAMENTE
 ========================================
 Sistema: Comparendos de Tránsito
 DBMS: PostgreSQL
-Fecha: 2025-11-17
-Versión: 2.1
-
-CAMBIOS APLICADOS:
-✓ policia_transito vinculada con personas
-✓ id_persona agregado (obligatorio y único)
-✓ Eliminados: nombres, apellidos, genero, fecha_nacimiento
-✓ Tabla propietario_automotor ELIMINADA
-✓ RELACIÓN CORREGIDA: secretaria_transito ahora tiene id_municipio
-✓ Vista v_policia_completo creada
-✓ Vista v_secretaria_completa creada
-
-RELACIÓN CORRECTA:
-  Municipio (1) <---- (1) Secretaría de Tránsito
 
 Total de tablas creadas: 15
 - Tablas de catálogo: 3
