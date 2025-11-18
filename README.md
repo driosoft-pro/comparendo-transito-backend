@@ -16,10 +16,6 @@ Backend oficial del proyecto académico basado en **Comparendos de Tránsito**, 
 
 ---
 
-![MER_FULL.png](docs/img/MER_FULL.png)
-
----
-
 ## Estructura del Proyecto
 
 ```
