@@ -15,6 +15,7 @@ export { ComparendoModel } from "./comparendo.model.js";
 export { ComparendoInfraccionModel } from "./comparendoInfraccion.model.js";
 export { QuejaModel } from "./queja.model.js";
 
+
 // Export por defecto como objeto único
 import { UsuarioModel } from "./usuario.model.js";
 import { CargoPolicialModel } from "./cargoPolicial.model.js";

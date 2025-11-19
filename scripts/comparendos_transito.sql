@@ -175,10 +175,11 @@ CREATE INDEX idx_policia_persona ON policia_transito(id_persona);
 
 -- Tabla: licencia_categoria (depende de licencia_conduccion y categoria_licencia)
 CREATE TABLE licencia_categoria (
+    id_licencia_categoria SERIAL PRIMARY KEY,
     id_licencia_conduccion INTEGER NOT NULL,
     id_categoria_licencia INTEGER NOT NULL,
     fecha_asignacion DATE DEFAULT CURRENT_DATE,
-    PRIMARY KEY (id_licencia_conduccion, id_categoria_licencia),
+    CONSTRAINT licencia_categoria_unique UNIQUE (id_licencia_conduccion, id_categoria_licencia),
     CONSTRAINT fk_lic_cat_licencia FOREIGN KEY (id_licencia_conduccion)
         REFERENCES licencia_conduccion(id_licencia),
     CONSTRAINT fk_lic_cat_categoria FOREIGN KEY (id_categoria_licencia)

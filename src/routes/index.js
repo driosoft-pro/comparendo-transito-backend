@@ -14,6 +14,7 @@ import secretariasRoutes from "./secretarias.routes.js";
 import propiedadesRoutes from "./propiedades.routes.js";
 import cargosPolicialesRoutes from "./cargosPoliciales.routes.js";
 import categoriasLicenciaRoutes from "./categoriasLicencia.routes.js";
+import licenciaCategoriaRoutes from "./licenciaCategoria.routes.js";
 
 const router = Router();
 
@@ -39,5 +40,5 @@ router.use("/secretarias", secretariasRoutes);
 router.use("/propiedades", propiedadesRoutes);
 router.use("/cargos-policiales", cargosPolicialesRoutes);
 router.use("/categorias-licencia", categoriasLicenciaRoutes);
-
+router.use("/licencia-categoria", licenciaCategoriaRoutes);
 export default router;
