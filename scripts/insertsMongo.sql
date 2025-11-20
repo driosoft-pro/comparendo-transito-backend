@@ -1,6 +1,6 @@
-USE COMPARENDOS_TRANSITO
-
-{
+db.quejas.insertMany([
+  // Objeto 1
+  {
     fecha_radicacion: new Date("2025-01-12T10:15:00Z"),
     texto_queja: "El agente de tránsito impuso un comparendo sin explicación y no permitió la defensa del ciudadano.",
     estado: "RADICADA",
@@ -13,10 +13,11 @@ USE COMPARENDOS_TRANSITO
     updatedAt: new Date(),
     deleted_at: null
   },
+  // Objeto 2
   {
     fecha_radicacion: new Date("2025-01-08T08:42:00Z"),
     texto_queja: "El trato del agente fue agresivo e irrespetuoso durante la intervención.",
-    estado: "RADICADA",
+    estado: "RECHAZADA",
     medio_radicacion: "PRESENCIAL",
     respuesta: null,
     fecha_respuesta: null,
@@ -26,6 +27,7 @@ USE COMPARENDOS_TRANSITO
     updatedAt: new Date(),
     deleted_at: null
   },
+  // Objeto 3
   {
     fecha_radicacion: new Date("2025-01-03T11:20:00Z"),
     texto_queja: "Los datos del comparendo no coinciden con la placa del vehículo y se solicita corrección.",
@@ -39,6 +41,7 @@ USE COMPARENDOS_TRANSITO
     updatedAt: new Date(),
     deleted_at: null
   },
+  // Objeto 4
   {
     fecha_radicacion: new Date("2025-01-01T09:05:00Z"),
     texto_queja: "El agente no mostró identificación y actuó sin transparencia al imponer la multa.",
@@ -52,6 +55,7 @@ USE COMPARENDOS_TRANSITO
     updatedAt: new Date(),
     deleted_at: null
   },
+  // Objeto 5
   {
     fecha_radicacion: new Date("2024-12-27T15:48:00Z"),
     texto_queja: "Se denuncia intento de soborno por parte del agente durante la detención.",

@@ -278,21 +278,6 @@ INSERT INTO comparendo_infraccion (id_comparendo, id_infraccion, valor_calculado
 (10, 10, 468000, 'Uso de celular simultáneo');
 
 -- =========================================================================
--- 16. QUEJA (depende de comparendo y personas)
--- =========================================================================
-INSERT INTO queja (fecha_radicacion, texto_queja, estado, medio_radicacion, id_comparendo, id_persona) VALUES
-('2025-11-05 16:00:00', 'El agente fue grosero y no explicó correctamente la infracción', 'RADICADA', 'web', 1, 1),
-('2025-11-06 10:30:00', 'Trato inadecuado durante el procedimiento del comparendo', 'EN_TRAMITE', 'presencial', 2, 2),
-('2025-11-07 14:20:00', 'El policía solicitó dinero para no imponer el comparendo', 'EN_INVESTIGACION', 'web', 4, 4),
-('2025-11-08 09:15:00', 'No me entregó copia del comparendo y fue descortés', 'RADICADA', 'telefonico', 6, 6),
-('2025-11-09 11:45:00', 'Procedimiento realizado de forma incorrecta', 'RESUELTA', 'web', 3, 3),
-('2025-11-10 15:30:00', 'Agente no identificó correctamente la infracción', 'RADICADA', 'mobile', 8, 8),
-('2025-11-11 08:50:00', 'El comparendo fue impuesto sin justificación válida', 'ARCHIVADA', 'web', 7, 7),
-('2025-11-12 12:10:00', 'Solicito revisión del procedimiento por irregularidades', 'RADICADA', 'presencial', 5, 5),
-('2025-11-13 16:40:00', 'Comportamiento inapropiado del agente de tránsito', 'EN_TRAMITE', 'web', 10, 10),
-('2025-11-14 10:00:00', 'No se respetó el debido proceso durante la imposición', 'RADICADA', 'correo', 9, 9);
-
--- =========================================================================
 -- VERIFICACIÓN DE DATOS
 -- =========================================================================
 
@@ -323,8 +308,6 @@ UNION ALL
 SELECT 'comparendo', COUNT(*) FROM comparendo
 UNION ALL
 SELECT 'comparendo_infraccion', COUNT(*) FROM comparendo_infraccion
-UNION ALL
-SELECT 'queja', COUNT(*) FROM queja
 ORDER BY tabla;
 
 -- =========================================================================
@@ -383,7 +366,6 @@ Resumen de registros:
 - 10 Registros de propiedad
 - 10 Comparendos de tránsito
 - 11 Infracciones en comparendos
-- 10 Quejas ciudadanas
 
 Estado: DATOS LISTOS PARA PRUEBAS
 ========================================

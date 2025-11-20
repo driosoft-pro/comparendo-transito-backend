@@ -15,6 +15,7 @@ import propiedadesRoutes from "./propiedades.routes.js";
 import cargosPolicialesRoutes from "./cargosPoliciales.routes.js";
 import categoriasLicenciaRoutes from "./categoriasLicencia.routes.js";
 import licenciaCategoriaRoutes from "./licenciaCategoria.routes.js";
+import comparendoInfraccionRoutes from "./comparandoInfracciones.routes.js";
 
 // NoSQL
 import quejasRoutes from "./quejas.routes.js";
@@ -43,7 +44,8 @@ router.use("/secretarias", secretariasRoutes);
 router.use("/propiedades", propiedadesRoutes);
 router.use("/cargos-policiales", cargosPolicialesRoutes);
 router.use("/categorias-licencia", categoriasLicenciaRoutes);
-router.use("/licencia-categoria", licenciaCategoriaRoutes);
+router.use("/licencia-categorias", licenciaCategoriaRoutes);
+router.use("/comparendo-infracciones", comparendoInfraccionRoutes);
 
 // Rutas protegidas NoSQL
 router.use("/quejas", quejasRoutes);
