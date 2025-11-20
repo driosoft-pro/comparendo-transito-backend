@@ -36,62 +36,101 @@ Incluye:
 ```
 /api-comparendos-backend
 │
-├── docs                           # Documentación y diagramas
-│   └── db
+├── docs/                                   # Documentación y diagramas del sistema
+│   └── db/
 │       ├── EntidadesComparendoTransito.pdf
 │       └── RequerimientosComparendoTrancito.pdf
-├── scripts                        # Scripts útiles
-│   └── db
+│
+├── scripts/                                # Scripts útiles (BD / auditoría)
+│   └── db/
 │       ├── quejas.sql
 │       ├── auditoria.sql
 │       └── supabase.sql
-├── src
-│   ├── config
-│   │   ├── supabase.js            # Conexión a Supabase
-│   │   ├── mongo.js               # Conexión a MongoDB
-│   │   └── jwt.js                 # Configuración JWT
-│   │
-│   ├── middleware
-│   │   └── auth.middleware.js     # Validación JWT
-│   │
-│   ├── controllers                # Lógica de cada entidad
-│   │   ├── usuarios.controller.js
-│   │   ├── comparendos.controller.js
-│   │   ├── personas.controller.js
+│
+├── src/
+│   ├── app.js                               # Configuración principal de Express
+│   ├── server.js                            # Punto de entrada HTTP del servidor
+│
+│   ├── config/                              # Configuración de proveedores externos
+│   │   ├── supabase.js                      # Conexión PostgreSQL (Supabase)
+│   │   ├── mongo.js                         # Conexión MongoDB
+│   │   └── jwt.js                           # Helpers y firma/verificación JWT
+│
+│   ├── middleware/                          # Middlewares globales
+│   │   └── auth.middleware.js               # Validación JWT y roles
+│
+│   ├── controllers/                         # Lógica de negocio de cada entidad
+│   │   ├── auth.controller.js
 │   │   ├── automotores.controller.js
+│   │   ├── cargoPolicial.controller.js
+│   │   ├── categoriaLicencia.controller.js
+│   │   ├── comparendoInfracciones.controller.js
+│   │   ├── comparendos.controller.js
 │   │   ├── infracciones.controller.js
-│   │   └── quejas.controller.js
-│   │
-│   ├── routes                     # Rutas REST
-│   │   ├── index.js
-│   │   ├── usuarios.routes.js
-│   │   ├── comparendos.routes.js
-│   │   ├── personas.routes.js
+│   │   ├── licenciaCategoria.controller.js
+│   │   ├── licencias.controller.js
+│   │   ├── municipios.controller.js
+│   │   ├── personas.controller.js
+│   │   ├── policias.controller.js
+│   │   ├── propiedades.controller.js
+│   │   ├── quejas.controller.js
+│   │   ├── secretarias.controller.js
+│   │   └── usuarios.controller.js
+│
+│   ├── routes/                              # Definición de rutas REST (API)
+│   │   ├── auth.routes.js
 │   │   ├── automotores.routes.js
+│   │   ├── cargosPoliciales.routes.js
+│   │   ├── categoriasLicencia.routes.js
+│   │   ├── comparendoInfracciones.routes.js
+│   │   ├── comparendos.routes.js
 │   │   ├── infracciones.routes.js
-│   │   └── quejas.routes.js
-│   │
-│   ├── models                     # Modelos (Supabase, Mongo)
-│   │   ├── server.js
-│   │   ├── usuario.model.js
-│   │   ├── comparendo.model.js
-│   │   ├── infraccion.model.js
-│   │   ├── persona.model.js
+│   │   ├── licenciaCategoria.routes.js
+│   │   ├── licencias.routes.js
+│   │   ├── municipios.routes.js
+│   │   ├── personas.routes.js
+│   │   ├── policias.routes.js
+│   │   ├── propiedades.routes.js
+│   │   ├── quejas.routes.js
+│   │   ├── secretarias.routes.js
+│   │   ├── usuarios.routes.js
+│   │   └── index.js                         # Agrupa todas las rutas del módulo API
+│
+│   ├── models/                              # Modelos de datos SQL y NoSQL
+│   │   ├── baseModel.js                     # Base genérica Supabase
+│   │   ├── baseModelNoSQL.model.js          # Base genérica MongoDB
 │   │   ├── automotor.model.js
-│   │   └── queja.model.js
-│   │
-│   ├── utils
-│   │   ├── logger.js              # Logger centralizado
-│   │   └── errorHandler.js        # Manejo global de errores
-│   │
-│   └── app.js                     # Configuración express
+│   │   ├── cargoPolicial.model.js
+│   │   ├── categoriaLicencia.model.js
+│   │   ├── comparendo.model.js
+│   │   ├── comparendoInfraccion.model.js
+│   │   ├── infraccion.model.js
+│   │   ├── licenciaCategoria.model.js
+│   │   ├── licenciaConduccion.model.js
+│   │   ├── municipio.model.js
+│   │   ├── persona.model.js
+│   │   ├── policiaTransito.model.js
+│   │   ├── propiedadAutomotor.model.js
+│   │   ├── queja.model.js
+│   │   ├── secretariaTransito.model.js
+│   │   ├── usuario.model.js
+│   │   └── index.js                         # Export central de todos los modelos
 │
-├── test                           # Pruebas unitarias e integración
+│   ├── services/                            # Servicios reusables o integraciones
+│   │   └── queja.service.js                 # Servicio avanzado para quejas
 │
-├── .env.example                   # Variables necesarias
-├── .gitignore                     # Ignorar archivos sensibles
-├── package.json
-└── README.md
+│   ├── utils/                               # Herramientas generales
+│   │   ├── errorHandler.js                  # Middleware centralizado para errores
+│   │   ├── logger.js                        # Logger estándar para auditoría
+│   │   ├── password.js                      # Hash y validación de contraseñas
+│   │   └── validators.js                    # Validadores y sanitización
+│
+├── test/                                    # Pruebas unitarias / integración
+│
+├── .env.example                              # Variables de entorno requeridas
+├── .gitignore                                # Archivos ignorados por Git
+├── package.json                              # Dependencias y scripts npm
+└── README.md                                 # Documentación principal del backend
 ```
 
 ---
@@ -371,6 +410,24 @@ npm start
 | PUT    | `/api/licencias/:id` | Actualizar licencia por ID |
 | DELETE | `/api/licencias/:id` | Eliminar licencia por ID   |
 
+## CRUD LICENCIAS CATEGORIAS
+
+| Método | Endpoint                       | Descripción                          |
+| ------ | ------------------------------ | ------------------------------------ |
+| GET    | `/api/licencia-categorias`     | Listar licencia-categorias           |
+| GET    | `/api/licencia-categorias/:id` | Obtener licencia-categoria por ID    |
+| PUT    | `/api/licencia-categorias/:id` | Actualizar licencia-categoria por ID |
+| DELETE | `/api/licencia-categorias/:id` | Eliminar licencia-categoria por ID   |
+
+## CRUD CATEGORIAS LICENCIAS
+
+| Método | Endpoint                       | Descripción                          |
+| ------ | ------------------------------ | ------------------------------------ |
+| GET    | `/api/categorias-licencia`     | Listar categorias-licencia           |
+| GET    | `/api/categorias-licencia/:id` | Obtener categoria-licencia por ID    |
+| PUT    | `/api/categorias-licencia/:id` | Actualizar categoria-licencia por ID |
+| DELETE | `/api/categorias-licencia/:id` | Eliminar categoria-licencia por ID   |
+
 ## CRUD PROPIEDADES
 
 | Método | Endpoint               | Descripción                 |
@@ -398,14 +455,23 @@ npm start
 | PUT    | `/api/comparendos/:id` | Actualizar comparendo por ID |
 | DELETE | `/api/comparendos/:id` | Eliminar comparendo por ID   |
 
+## CRUD COMPARENDOS INFRACCIONES
+
+| Método | Endpoint               | Descripción                  |
+| ------ | ---------------------- | ---------------------------- |
+| GET    | `/api/comparendos`     | Listar comparendos           |
+| GET    | `/api/comparendos/:id` | Obtener comparendo por ID    |
+| PUT    | `/api/comparendos/:id` | Actualizar comparendo por ID |
+| DELETE | `/api/comparendos/:id` | Eliminar comparendo por ID   |
+
 ## CRUD INFRACCIONES
 
-| Método | Endpoint                | Descripción                  |
-| ------ | ----------------------- | ---------------------------- |
-| GET    | `/api/infracciones`     | Listar infracciones          |
-| GET    | `/api/infracciones/:id` | Obtener infraccion por ID    |
-| PUT    | `/api/infracciones/:id` | Actualizar infraccion por ID |
-| DELETE | `/api/infracciones/:id` | Eliminar infraccion por ID   |
+| Método | Endpoint                           | Descripción                             |
+| ------ | ---------------------------------- | --------------------------------------- |
+| GET    | `/api/comparendo-infracciones`     | Listar comparendo-infracciones          |
+| GET    | `/api/comparendo-infracciones/:id` | Obtener comparendo-infraccion por ID    |
+| PUT    | `/api/comparendo-infracciones/:id` | Actualizar comparendo-infraccion por ID |
+| DELETE | `/api/comparendo-infracciones/:id` | Eliminar comparendo-infraccion por ID   |
 
 ## CRUD QUEJAS
 
