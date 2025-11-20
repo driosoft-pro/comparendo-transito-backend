@@ -17,7 +17,7 @@ db.quejas.insertMany([
   {
     fecha_radicacion: new Date("2025-01-08T08:42:00Z"),
     texto_queja: "El trato del agente fue agresivo e irrespetuoso durante la intervención.",
-    estado: "RECHAZADA",
+    estado: "ARCHIVADA",
     medio_radicacion: "PRESENCIAL",
     respuesta: null,
     fecha_respuesta: null,
@@ -31,7 +31,7 @@ db.quejas.insertMany([
   {
     fecha_radicacion: new Date("2025-01-03T11:20:00Z"),
     texto_queja: "Los datos del comparendo no coinciden con la placa del vehículo y se solicita corrección.",
-    estado: "EN TRÁMITE",
+    estado: "EN_TRAMITE",
     medio_radicacion: "WEB",
     respuesta: "Se está revisando la información con la Secretaría de Movilidad.",
     fecha_respuesta: new Date("2025-01-10T14:35:00Z"),
