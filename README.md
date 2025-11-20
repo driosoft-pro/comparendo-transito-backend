@@ -437,15 +437,6 @@ npm start
 | PUT    | `/api/propiedades/:id` | Actualizar propiedad por ID |
 | DELETE | `/api/propiedades/:id` | Eliminar propiedad por ID   |
 
-## CRUD PROPIETARIOS
-
-| Método | Endpoint                | Descripción                   |
-| ------ | ----------------------- | ----------------------------- |
-| GET    | `/api/propietarios`     | Listar propietarios           |
-| GET    | `/api/propietarios/:id` | Obtener municipio por ID      |
-| PUT    | `/api/propietarios/:id` | Actualizar propietario por ID |
-| DELETE | `/api/propietarios/:id` | Eliminar propietario por ID   |
-
 ## CRUD COMPARENDOS
 
 | Método | Endpoint               | Descripción                  |
