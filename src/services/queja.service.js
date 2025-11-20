@@ -101,7 +101,9 @@ export const QuejaService = {
    */
   async update(id, payload) {
     if ("deleted_at" in payload) delete payload.deleted_at;
-    const updated = await Queja.findByIdAndUpdate(id, payload, { new: true }).lean();
+    const updated = await Queja.findByIdAndUpdate(id, payload, {
+      new: true,
+    }).lean();
     return updated;
   },
 
